@@ -10,11 +10,21 @@
     </head>
     <body>
         
-        <select id="id-select-keynote" onchange="selectChanged();"></select> 
-        <select id="id-select-scale"   onchange="selectChanged();"></select>
+        <h1>Scale View</h1>
         
-        <div id="display-notes">
-            
+        <select id="id-select-keynote" onchange="selectChanged();"></select> 
+        <select id="id-select-scale"   onchange="selectChanged();"></select>        
+        
+        
+        <div id="container-scale">
+            <h3></h3>
+            <div id="display-notes"></div>
+        </div>
+        
+                
+        <div id="container-harmonies">
+            <h2>Harmonien</h2>
+            <div id="display-harmonies"></div>
         </div>
                 
         <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>

@@ -3,9 +3,9 @@ var doubleNotes = notes.concat(notes);
 
 var scales = {
     major           : "Dur",
-    naturalMinor    : "natürliches Moll",
-    harmonicMinor   : "harmonisches Moll", 
-    melodicMinor    : "melodisches Moll"
+    naturalMinor    : "Moll (natürlich)",
+    harmonicMinor   : "Moll (harmonisch)", 
+    melodicMinor    : "Moll (melodisch)"
 };
 
 var steps = {
@@ -15,22 +15,48 @@ var steps = {
     melodicMinor    : [2, 1 ,2, 2, 2, 1, 1]
 };
 
+var notesArr = [];
+
+function printHarmonies(){
+  let tonic         = notesArr[0];
+  let dominant      = notesArr[4];
+  let subdominant   = notesArr[4];
+  
+  
+  
+};
+
+/**
+ * 
+ * @param {type} scale
+ * @param {type} keynote
+ * @returns {undefined}
+ */
+function printScale( scale, keynote ){
+    let scaleIndex  = 0 + keynote;
+    notesArr = [];
+    notesArr.push(doubleNotes[ scaleIndex ]);
+    
+    for ( i = 0; i < steps[ scale ].length; i++ ){
+        scaleIndex = scaleIndex + steps[ scale ][i];
+        notesArr.push( doubleNotes[ scaleIndex ] );
+    };
+    
+    $('#display-notes').html( notesArr );
+    $('#container-scale h3').html(doubleNotes[ keynote ] + " - " + scales[ scale]);    
+}
+
+/**
+ * 
+ * @returns {undefined}
+ */
 function selectChanged(){
     let useKeynote  = parseInt($( '#id-select-keynote' ).val());
     let useScale    = $( '#id-select-scale'  ).val();
-    console.log( useKeynote );
-    console.log( steps[useScale] );
     
-    var scaleIndex  = 0 + useKeynote;
-    var notesString = doubleNotes[ scaleIndex ];
+    // print the scale, based on selection
+    printScale(useScale, useKeynote);     
     
-    for ( i = 0; i < steps[useScale].length; i++ ){
-        scaleIndex = scaleIndex + steps[useScale][i];        
-        notesString += " , " + doubleNotes[ scaleIndex ];
-        
-        // $('#display-notes').html( $('#display-notes').html() + doubleNotes[ steps[useScale] ] )
-    };
-    console.log(notesString)
 }
 
 /**
@@ -59,6 +85,10 @@ function init(){
                 .attr("value",base);
         $('#id-select-scale').append( opt );
     });
+    
+    // initial call for setting the first scale
+    // C Minor 
+    selectChanged();
 }
 
 $(document).ready( init );
