@@ -17,11 +17,17 @@ var steps = {
 
 var notesArr = [];
 
-function printHarmonies(){
-  let tonic         = notesArr[0];
-  let dominant      = notesArr[4];
-  let subdominant   = notesArr[4];
+function printHarmonies(){  
+  let harmonyLegend = [ "T", "S", "D" ];
+  let harmonyValues = [ notesArr[0], notesArr[3], notesArr[4] ];
   
+  $.each(harmonyValues,function(index, value){
+      harmonyValues[index] = "<span>" + value + "</span>";
+      harmonyLegend[index] = "<span>" + harmonyLegend[index] + "</span>";      
+  });
+  console.log(harmonyLegend)
+  
+  $('#display-harmonies').html( harmonyLegend.join("") + "<br />" + harmonyValues.join("") );  
   
   
 };
@@ -35,15 +41,16 @@ function printHarmonies(){
 function printScale( scale, keynote ){
     let scaleIndex  = 0 + keynote;
     notesArr = [];
-    notesArr.push(doubleNotes[ scaleIndex ]);
-    
+    notesArr.push(doubleNotes[ scaleIndex ]);tw 
+   
     for ( i = 0; i < steps[ scale ].length; i++ ){
         scaleIndex = scaleIndex + steps[ scale ][i];
         notesArr.push( doubleNotes[ scaleIndex ] );
     };
     
-    $('#display-notes').html( notesArr );
+    $('#display-notes').html( notesArr.join(" ") );
     $('#container-scale h3').html(doubleNotes[ keynote ] + " - " + scales[ scale]);    
+    
 }
 
 /**
@@ -56,7 +63,7 @@ function selectChanged(){
     
     // print the scale, based on selection
     printScale(useScale, useKeynote);     
-    
+    printHarmonies();
 }
 
 /**
