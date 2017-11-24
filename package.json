@@ -1,8 +1,19 @@
 {
     "name": "scaleview",
     "version": "1.0.0",
-    "keywords": ["util", "functional", "server", "client", "browser"],
-    "author": "raine",
+    "keywords": [
+        "util",
+        "functional",
+        "server",
+        "client",
+        "browser"
+    ],
+    "author": "korshunX",
     "contributors": [],
-    "dependencies": {}
+    "dependencies": {},
+    "devDependencies": {
+        "gulp": "^3.9.1",
+        "gulp-sass": "^3.1.0",
+        "gulp-sourcemaps": "^2.6.1"
+    }
 }
